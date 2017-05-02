@@ -1,12 +1,13 @@
 // This separate configuration file
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
 
 // adding firebase configuration
-var config = {
-    apiKey: "AIzaSyBd3BiGorQDkk4i2Y8f3nAcqomp0ikiUNk",
-    authDomain: "blood-bank-system-ecabb.firebaseapp.com",
-    databaseURL: "https://blood-bank-system-ecabb.firebaseio.com",
-    storageBucket: "blood-bank-system-ecabb.appspot.com",
-    messagingSenderId: "539807996340"
-};
-firebase.initializeApp(config);
+ var config = {
+    apiKey: "AIzaSyD0XqkDUKZwkEzz8pb_7GpnXfvCV9YgKgs",
+    authDomain: "fir-projects-ec8e8.firebaseapp.com",
+    databaseURL: "https://fir-projects-ec8e8.firebaseio.com",
+    projectId: "fir-projects-ec8e8",
+    storageBucket: "fir-projects-ec8e8.appspot.com",
+    messagingSenderId: "690250921546"
+  };
+//   firebase.initializeApp(config);firebase.initializeApp(config);

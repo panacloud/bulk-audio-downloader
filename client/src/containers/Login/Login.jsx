@@ -52,6 +52,8 @@ class Login extends Component {
   }
 
   render() {
+    const app = this.props;
+    console.log("this.props", this.props);
     return (
       <MuiThemeProvider muiTheme={AppTheme}>          
       <div>
