@@ -1,16 +1,16 @@
 import { Observable} from "rxjs"
-import * as firebase from 'firebase'
-import UserActions from '../actions/userActions'
+import AudioActions from '../actions/audioActions'
 
+export default class AudioListEpic{
 
-export class UserEpic{
-    static Login  = (action$ =>
-      action$.ofType(UserActions.USER_LIST)
-            .switchMap(({ payload }) => {
-                return Observable.fromPromise(ref.push(payload))
-                    .map((x) => {
-                        return { type: UserActions.NULL };
-                    })  
+    static getAudioData(actions$){
+        return actions$.ofType(AudioActions.GET_DATA)
+        .mergeMap(() => {
+            return Observable.ajax("https://api.github.com/users/farooqmajeed/repos")
+            .pluck("response")
+            .switchMap((data) =>{
+                return Observable.of(AudioActions.getAudioListSuccessfull(data))
             })
-    )
-}
+        })
+    }
+}   

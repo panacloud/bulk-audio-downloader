@@ -1,24 +1,24 @@
 import React, { Component , PropTypes} from 'react';
 import './Navigation.css';
 import * as MUI from 'material-ui'
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 import { connect } from 'react-redux';
 import Avatar from 'material-ui/Avatar';
-import Assessment from 'material-ui/svg-icons/action/assessment';
-import Web from 'material-ui/svg-icons/av/web';
-import { AuthMiddleware } from '../../store'
-
-
+import AudioActions from '../../store/actions/audioActions.js'
+import AudioList from '../../components/AudioList/AudioList'
 function mapStateToProps(state) {
+   console.log("state", state);
     return {
-        isAuthenticated: state.AuthReducer.isAuthenticated,
-        authUser: state.AuthReducer.authUser
+         audioList: state.epicReducer.audioList
     };
 }
 
+
 function mapDispatchToProps(dispatch) {
     return {
-        logout: () => dispatch(AuthMiddleware.logout())
+         fetchAudioData: function(){
+            return dispatch(AudioActions.getData())
+        }
     };
 }
 
@@ -26,20 +26,6 @@ class Navigation extends Component {
   static contextTypes = {
     router: PropTypes.object.isRequired
   }
-
-  componentWillReceiveProps(nextProps){
-    setTimeout(()=> {
-      if(!this.props.isAuthenticated){
-        console.log("Logout true");
-          this.context.router.push("/login");
-      }
-    },0);
-  }
-
-  /*
-  handelSignin() {
-    this.props.logout();
-  }*/
   drawerMenu(){
     return (
       <div>
@@ -47,9 +33,8 @@ class Navigation extends Component {
             <Avatar src="http://www.material-ui.com/images/uxceo-128.jpg"
                     size={50}
                     className="navigation-icon"/>
-            <span className="navigation-span">{this.props.authUser.fullName}</span>
           </div>
-          <MUI.MenuItem
+          {/*<MUI.MenuItem
               className="navigation-menuItem"
               primaryText="Dashboard"
               leftIcon={<Assessment/>}
@@ -60,7 +45,14 @@ class Navigation extends Component {
             primaryText="Users"
             leftIcon={<Web/>}
             containerElement={<Link to="/dashboard/userlist"/>}
-          />
+            /> 
+             <MUI.MenuItem
+            className="navigation-menuItem"
+            primaryText="Audio List"
+            leftIcon={<Web/>}
+            containerElement={<Link to="/dashboard/audioList"/>}
+          />*/}
+          
       </div>
     );
   }
@@ -77,6 +69,10 @@ class Navigation extends Component {
             onRequestChange={this.props.drawerToggle}>
           {this.drawerMenu()}
         </MUI.Drawer>
+
+        <div>
+           <AudioList {...this.props}/>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as MUI from 'material-ui'
-import SvgIconFace from 'material-ui/svg-icons/action/face';
+// import SvgIconFace from 'material-ui/svg-icons/action/face';
 import styles from './AudioListStyle.js'
 import logo from '../../images/user-default.png'
 import SvgIconSearch from 'material-ui/svg-icons/action/search'
@@ -8,6 +8,11 @@ import SvgIconSearch from 'material-ui/svg-icons/action/search'
 
 class AudioList extends Component {
 
+
+//   componentDidMount() {
+//       console.log("props", this.props.fetchAudioData);
+//     this.props.fetchAudioData();
+//   }
 
     render() {
         return (
@@ -19,7 +24,7 @@ class AudioList extends Component {
                         <MUI.TextField
                             hintText="Test searching"
                             fullWidth={true}
-                            Style={styles.textFeild}
+                            style={styles.textFeild}
                         />
                     </MUI.AppBar>
                     <br />
@@ -28,7 +33,7 @@ class AudioList extends Component {
                         <MUI.Chip
                            
                             style={styles.chip}
-                            fullWidth={true}
+                            
                         >
                             <MUI.Avatar src={logo} />
                             testing chip
@@ -52,7 +57,7 @@ class AudioList extends Component {
                         <MUI.Chip
                             
                             style={styles.chip}
-                            fullWidth={true}
+                            
                         >
                             <MUI.Avatar src={logo} />
                             testing chip
@@ -80,8 +85,8 @@ class AudioList extends Component {
                 </MUI.Card>
                 <br />
 
-                <div className="long-buttonsDiv" style={styles.buttonConainer}>
-                    <MUI.RaisedButton  label="Download"   primary={true} />
+                <div style={styles.buttonConainer}>
+                    <MUI.RaisedButton  label="Download" onClick={this.props.fetchAudioData}  primary={true} />
                 </div>
             </div>
 
@@ -89,4 +94,4 @@ class AudioList extends Component {
 
     }
 }
-export default AudioList 
+export default AudioList;

@@ -6,20 +6,14 @@ import {
     browserHistory
 } from 'react-router'
 
-import { App,Login, Signup, Dashboard } from './containers'
-import {UserList, UserDetail, AudioList} from './components'
+import { App, Dashboard, AudioListApp } from './containers'
 
 export default (
     <Router history={browserHistory}>
-        {/*<Route path="login" component={Login} />
-        <Route path="signup" component={Signup} />*/}
         <Route path="/" component={App}>
-            {/*<IndexRoute component={Dashboard} />            */}
-           <Route path="dashboard" component={AudioList} >
-                <IndexRoute component={AudioList} />
-                {/*<IndexRoute component={UserList} />
-                <Route path="userlist" component={UserList} />
-                <Route path="userlist/:id" component={UserDetail} />*/}
+            <IndexRoute component={Dashboard} />            
+           <Route path="dashboard" component={AudioListApp} >
+              
             </Route>
             
         </Route>

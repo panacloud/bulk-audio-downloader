@@ -1,23 +1,22 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import {combineEpics, createEpicMiddleware } from 'redux-observable'
 import logger from 'redux-logger';
-import userEpic from './reducers/epicReducer'
+import AudioListEpic from './middleware/epicMiddleware'
+import epicReducer from './reducers/epicReducer';
 
-import AuthReducer from './reducers/authReducer';
-import UserReducer from './reducers/userReducer';
-
-import AuthMiddleware from './middleware/authMiddleware'
-import UserMiddleware from './middleware/userMiddleware'
+// import AuthMiddleware from './middleware/authMiddleware'
+// import UserMiddleware from './middleware/userMiddleware'
 
 // combining Epics
-const rootEpic = combineEpics(
-//   userEpic. userList
-
+ export const rootEpic = combineEpics(
+  AudioListEpic.getAudioData
 );
 
 export {
-    AuthMiddleware,
-    UserMiddleware
+
+    // AuthMiddleware,
+    // UserMiddleware,
+    AudioListEpic
     // other Middlewares here
 }
 
@@ -25,8 +24,9 @@ export {
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
 export const rootReducer = combineReducers({
-    AuthReducer,
-    UserReducer
+    // AuthReducer,
+    // UserReducer,
+    epicReducer
 // more reducers go here
 })
 

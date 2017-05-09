@@ -4,11 +4,12 @@ const styles = {
       minWidth: 320,
       maxWidth: 600,
       margin : 'auto',
+      marginTop:20,
       height: 'auto',
-      top: '10%',
+      top: 10,
       left: 0,
       right: 0,
-      padding: 10,      
+      padding: 20,      
   }, 
   buttonConainer: {
       margin: 'auto',
@@ -30,8 +31,8 @@ const styles = {
   
   chip: {
     margin: 5,
-    height: '50',
-    padding:'10',
+    height: 50,
+    padding:10,
   },
   wrapper: {
     display: 'flex',
@@ -39,11 +40,11 @@ const styles = {
   },
 
   textFeild: {
-    marginLeft : '10',
+    marginLeft :10,
   },
  searchBar: {
-   marginTop : '10',
-   marginRight : '10'
+   marginTop : 10,
+   marginRight : 10
  }, 
  button:{
       marginLeft : 'auto',
