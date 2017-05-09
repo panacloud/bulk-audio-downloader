@@ -14,8 +14,8 @@ const styles = {
   buttonConainer: {
       margin: 'auto',
       marginTop: 'auto',
-      minWidth: 320,
-      maxWidth: 600,
+      minWidth: 100,
+      maxWidth: 120,
       height: 'auto',
       border: 'false'
        
