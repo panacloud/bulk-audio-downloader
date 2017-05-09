@@ -62,8 +62,6 @@ class Navigation extends Component {
       <div className="navigation-container">
         <MUI.AppBar style={this.props.styles} title="React Boilerplate"
               onLeftIconButtonTouchTap={this.props.drawerToggle}
-              iconElementRight={<MUI.FlatButton label="Sign out" onTouchTap={this.props.logout}/>}
-              onRightIconButtonTouchTap={()=>this.context.router.push("/login")}
               />
         <MUI.Drawer open={this.props.drawerOpen} docked={false}
             onRequestChange={this.props.drawerToggle}>
