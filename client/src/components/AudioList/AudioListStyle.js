@@ -2,7 +2,7 @@ const styles = {
  
    muiListContainer: {
       minWidth: 320,
-      maxWidth: 600,
+      maxWidth: 800,
       margin : 'auto',
       marginTop:20,
       height: 'auto',
@@ -17,8 +17,7 @@ const styles = {
       minWidth: 100,
       maxWidth: 120,
       height: 'auto',
-      border: 'false'
-       
+      border: 'false'     
      
   },
 
@@ -27,7 +26,6 @@ const styles = {
       backgroundColor:'#FAFAFA',
       margin:'auto'
   },
- 
   
   chip: {
     margin: 5,
@@ -48,6 +46,10 @@ const styles = {
  }, 
  button:{
       marginLeft : 'auto',
+ },
+ heading:{
+   marginLeft :  '30%'
+   
  },
     clear: {
       clear: 'both'

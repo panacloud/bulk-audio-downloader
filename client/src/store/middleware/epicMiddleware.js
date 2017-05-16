@@ -1,22 +1,20 @@
-import { Observable} from "rxjs"
+import { Observable } from "rxjs"
 import AudioActions from '../actions/audioActions'
 
-export default class AudioListEpic{
+export default class AudioListEpic {
 
-    static getAudioData(actions$){
+    static getAudioData(actions$) {
         return actions$.ofType(AudioActions.GET_DATA)
-        .mergeMap(() => {
-            return Observable.ajax("https://api.github.com/users/farooqmajeed/repos")
-            //return Observable.ajax("/search")
-            //return Observable.ajax({"/read"})
-            //return Observable.ajax({ url: '/read', method: 'GET', responseType: 'audio/mp4' })
-            .do((data)=>{
-                console.log("data >> ",data);
+            .mergeMap((actions$) => {
+                return Observable.ajax({ url: 'http://127.0.0.1:5000/search', method: 'POST', responseType: 'audio/mp4', body: { fileList: actions$.payload } })
+                    .do((data) => {
+                        console.log("data >> ", data);
+                    })
+                    .pluck("response")
+                    .switchMap((data) => {
+                        return Observable.of(AudioActions.getAudioListSuccessfull(data))
+                    })
             })
-            .pluck("response")
-            .switchMap((data) =>{
-                return Observable.of(AudioActions.getAudioListSuccessfull(data))
-            })
-        })
     }
+
 }   

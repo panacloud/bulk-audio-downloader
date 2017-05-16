@@ -34,21 +34,22 @@ def main():
 @app.route("/search", methods=['POST'])
 #@app.route("/search")
 def search():
-    fileToSearch  = request.form['filename']
-    #fileToSearch = "0565099894"
-    fileList = searchDirectory(fileToSearch)
+    fileToSearch  = request.form['fileList']
+            #fileToSearch = "`"
+    fileList = searchDirectory(fileToSearch)    
     return json.dumps(fileList)
     #return json.dumps(["Hello","World","Data","Test"])
-
 
 @app.route("/search2", methods=['GET'])
 #@app.route("/search")
-def search2():
-    #filename = request.form['filename']
-    fileToSearch = "0565099894"
+    
+def search2():  
+    
+    # filename = request.form['filename']   
+    fileToSearch = ""
     fileList = searchDirectory(fileToSearch)
     return json.dumps(fileList)
-    #return json.dumps(["Hello","World","Data","Test"])
+#return json.dumps(["Hello","World","Data","Test"])
 
 
 def searchDirectory(fileToSearch):
@@ -65,7 +66,7 @@ def traverseDirectory(baseSearchPath, fileToSearch):
     finalList = [item[0] + os.path.sep + file for item in data for file in item[2] if fileToSearch in file]
     #finalList = [item[0]+os.path.sep+file for item in data for file in item[2] if file.startswith(fileToSearch)]
 
-    print("-----")
+    print("-----")  
     print(finalList)
     print("-----")
     return finalList
@@ -95,16 +96,17 @@ def reading():
             mimetype="audio/mp4",
             as_attachment=True,
             attachment_filename=fileName[len(fileName)-1])
+    
 
 
-
-@app.route("/downloadFile")
+@app.route("/downloadFile", methods=['GET'])
 def readZipFile():
     memory_file = io.BytesIO()
 
     with zipfile.ZipFile(memory_file, 'w') as zf:
+        filename = request.args.get('filename');
         #files = ["D:\\developmentData\\DeepLearning\\song1.mp4","D:\\developmentData\\DeepLearning\\song2.mp4"]
-        files = searchDirectory("song2.mp4")
+        files = searchDirectory(filename);
         for individualFile in files:
             filePathArray = individualFile.split(os.path.sep)
             fileName = filePathArray[(len(filePathArray))-1]
