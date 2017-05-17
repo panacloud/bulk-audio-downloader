@@ -70,10 +70,10 @@ def readZipFile():
     memory_file = io.BytesIO()
 
     with zipfile.ZipFile(memory_file, 'w') as zf:
-        filename = request.args.get('filename');
+        filename = request.args.get('filenamelist');
         #files = ["D:\\developmentData\\DeepLearning\\song1.mp4","D:\\developmentData\\DeepLearning\\song2.mp4"]
-        files = searchDirectory(filename);
-        for individualFile in files:
+        #files = searchDirectory(filename);
+        for individualFile in filename:
             filePathArray = individualFile.split(os.path.sep)
             fileName = filePathArray[(len(filePathArray))-1]
             data = zipfile.ZipInfo(fileName)
@@ -83,7 +83,7 @@ def readZipFile():
             with open(individualFile,"rb") as file_object:
                 zf.writestr(data,file_object.read())
     memory_file.seek(0)
-    return send_file(memory_file, attachment_filename='capsule.zip', as_attachment=True)
+    return send_file(memory_file, attachment_filename='audios.zip', as_attachment=True)
 
 
 if __name__ == "__main__":
