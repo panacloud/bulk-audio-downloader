@@ -65,15 +65,16 @@ def verifyFileName(filePath, fileToSearch):
 
 
 
-@app.route("/downloadFile", methods=['GET'])
+@app.route("/downloadFile", methods=['GET','POST'])
 def readZipFile():
     memory_file = io.BytesIO()
 
     with zipfile.ZipFile(memory_file, 'w') as zf:
-        filename = request.args.get('filenamelist');
+        filenames = request.get_json()["fileNameList"];
+        #filename = request.args.get('filenamelist');
         #files = ["D:\\developmentData\\DeepLearning\\song1.mp4","D:\\developmentData\\DeepLearning\\song2.mp4"]
         #files = searchDirectory(filename);
-        for individualFile in filename:
+        for individualFile in filenames:
             filePathArray = individualFile.split(os.path.sep)
             fileName = filePathArray[(len(filePathArray))-1]
             data = zipfile.ZipInfo(fileName)
