@@ -51,6 +51,13 @@ const styles = {
    marginLeft :  '30%'
    
  },
+ searchbtn:{
+    marginLeft: 10,
+    marginTop: 10
+ },
+ progress:{
+    marginLeft: '45%'
+ },
     clear: {
       clear: 'both'
     }

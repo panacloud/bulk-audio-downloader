@@ -10,6 +10,7 @@ function mapStateToProps(state) {
   console.log("state", state);
   return {
     audioList: state.epicReducer.audioList,
+    downloadList: state.epicReducer.downloadList
   };
 }
 
@@ -18,6 +19,9 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchAudioData: function (data) {
       return dispatch(AudioActions.getData(data))
+    },
+     fetchDownloadData: function (data) {
+      return dispatch(AudioActions.getDownloadData(data))
     }
   };
 }
