@@ -99,7 +99,6 @@ class AudioList extends Component {
                                 key={index}
                                 style={styles.chip}
                                 onTouchTap={this.handleTouchTap}
-                                onChange={this.state.progressbar == false}
                                 >
                                 {data}
                             </MUI.Chip>)
