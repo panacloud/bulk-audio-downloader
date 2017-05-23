@@ -17,10 +17,16 @@ class AudioList extends Component {
     }
 
     downloadFiles = () => {
+        if (this.refs && this.refs.search && this.refs.search.getValue()) {
+            var url = " http://127.0.0.1:5000/downloadFile?filename=" + this.refs.search.getValue();
+            window.location.href = url;
+        }
+        /*
         if (this.props && this.props.audioList && this.props.audioList.length) {
             this.props.fetchDownloadData(this.props.audioList);
             console.log("download files", this.props.audioList);
         }
+        */
     }
 
 
@@ -28,7 +34,7 @@ class AudioList extends Component {
         if (this.refs && this.refs.search && this.refs.search.getValue()) {
             this.props.fetchAudioData(this.refs.search.getValue());
             console.log("data");
-            this.setState({ progressbar: true })
+            //this.setState({ progressbar: true })
         }
 
     }
@@ -100,9 +106,7 @@ class AudioList extends Component {
                         }) : false}
 
                     </div>
-                    {this.state.progressbar == true ? <MUI.CircularProgress style={styles.progress} size={80}>
-                        autoHideDuration ={3000}
-                    </MUI.CircularProgress> : false}
+                   
                 </MUI.Card>
                 <br />
 
