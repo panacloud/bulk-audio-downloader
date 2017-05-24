@@ -10,17 +10,28 @@ class AudioList extends Component {
         this.state = {
             progressbar: false,
             valid: '',
-            inputValidation: true
+            inputValidation: true,
+            errorMessage: ''
         }
         this.searchFiles = this.searchFiles.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
     }
 
     downloadFiles = () => {
         if (this.refs && this.refs.search && this.refs.search.getValue()) {
             var url = " http://127.0.0.1:5000/downloadFile?filename=" + this.refs.search.getValue();
             window.location.href = url;
+            this.setState({
+                errorMessage: ''
+            })
+        } else {
+            this.setState({
+                errorMessage: "Error Occured !! Please Insert file name and then Download"
+
+            })
         }
+
         /*
         if (this.props && this.props.audioList && this.props.audioList.length) {
             this.props.fetchDownloadData(this.props.audioList);
@@ -38,22 +49,31 @@ class AudioList extends Component {
         }
 
     }
-    handleChange(e) {
-
+    handleChange(event) {
+        var that = this;
         this.setState({
-            valid: e.target.value
+            valid: event.target.value
         })
-        if (this.state.valid.length == 9) {
-            this.state.inputValidation = false;
-        }
+        setTimeout(() => {
+            if (that.state.valid.length == 10) {
+                that.setState({
+                    inputValidation: false,
+                     errorMessage: ''
+
+                })
+            } else {
+                that.setState({
+                    inputValidation: true,
+                    errorMessage: ''
+                })
+            }
+        }, 20)
     }
 
 
     render() {
-        let fileDownload = this.props.downloadList
-        console.log("downloadFiles", fileDownload)
         let fileName = this.props.audioList;
-        console.log("audiolist", fileName)
+        // console.log("audiolist", fileName)
         let allFiles = [];
         if (fileName && fileName.length) {
             var innerData = JSON.parse(fileName);
@@ -74,7 +94,7 @@ class AudioList extends Component {
                             hintText="Test searching"
                             fullWidth={true}
                             style={styles.textFeild}
-                            onChange={this.handleChange}
+                            onKeyUp={this.handleChange}
                             />
 
                         <div>
@@ -83,9 +103,8 @@ class AudioList extends Component {
                         </div>
                     </MUI.AppBar>
                     <br />
-
                     <div style={styles.buttonConainer}>
-                        <MUI.RaisedButton label="Download" primary={true} onTouchTap={this.downloadFiles.bind(this)} />
+                        <MUI.RaisedButton label="Download" primary={true}   onTouchTap={this.downloadFiles.bind(this)} />
                     </div>
 
 
@@ -94,18 +113,21 @@ class AudioList extends Component {
                     <div style={styles.wrapper} >
                         <h4 style={styles.heading}> Enter number in search bar to view list  </h4>
 
+                        <h4 style={styles.error}> {this.state.errorMessage} </h4>
+                      
                         {allFiles && allFiles.length ? allFiles.map((data, index) => {
                             return (<MUI.Chip
                                 key={index}
                                 style={styles.chip}
-                                onTouchTap={this.handleTouchTap}
+                                onchange={this.state.progressbar == false}
+
                                 >
                                 {data}
                             </MUI.Chip>)
                         }) : false}
 
                     </div>
-                   
+
                 </MUI.Card>
                 <br />
 
