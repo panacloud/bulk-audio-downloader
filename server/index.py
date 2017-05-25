@@ -87,5 +87,3 @@ def readZipFile():
     return send_file(memory_file, attachment_filename='audios.zip', as_attachment=True)
 
 
-if __name__ == "__main__":
-    app.run();
