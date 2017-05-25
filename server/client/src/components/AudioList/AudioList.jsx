@@ -21,7 +21,9 @@ class AudioList extends Component {
     downloadFiles = () => {
         if (this.refs && this.refs.search && this.refs.search.getValue()) {
             var host = window.location.hostname
-            var url = "http://"+host+"/downloadFile?filename=" + this.refs.search.getValue();
+            var port = window.location.port
+            port = port ? ":"+port : port
+            var url = "http://"+host+port+"/downloadFile?filename=" + this.refs.search.getValue();
             window.location.href = url;
             this.setState({
                 errorMessage: ''
