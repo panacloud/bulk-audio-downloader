@@ -35,17 +35,21 @@ def search():
 
 
 def searchDirectory(fileToSearch):
-    fileList = traverseDirectory(baseSearchPath,fileToSearch)
+    fileNameList = fileToSearch.split(",")
+    print(fileNameList)
+    fileList = traverseDirectory(baseSearchPath,fileNameList)
+    #fileList = traverseDirectory(baseSearchPath,fileToSearch)
     #fileList = traverseDirectory2(baseSearchPath, fileToSearch)
     return fileList
 
 
-def traverseDirectory(baseSearchPath, fileToSearch):
+def traverseDirectory(baseSearchPath, fileNameList):
     data = os.walk(baseSearchPath)
     print(data)
 
     #iterating over file time and then individual files then add required file in list
-    finalList = [item[0] + os.path.sep + file for item in data for file in item[2] if verifyFileName(file,fileToSearch)]
+    finalList = [item[0] + os.path.sep + file for item in data for file in item[2] if verifyFileName(file,fileNameList)]
+    #finalList = [item[0] + os.path.sep + file for item in data for file in item[2] if verifyFileName(file,fileToSearch)]
     #finalList = [item[0] + os.path.sep + file for item in data for file in item[2] if fileToSearch in file]
     #finalList = [item[0]+os.path.sep+file for item in data for file in item[2] if file.startswith(fileToSearch)]
 
@@ -55,11 +59,12 @@ def traverseDirectory(baseSearchPath, fileToSearch):
     return finalList
 
 
-def verifyFileName(filePath, fileToSearch):
+def verifyFileName(filePath, fileNameList):
     filePathArray = filePath.split(os.path.sep)
     fileName = filePathArray[(len(filePathArray)) - 1]
     fileNameRequired = fileName.split("-")[1]
-    return fileToSearch in fileNameRequired
+    fileExistsList = [True for nameItem in fileNameList if nameItem in fileNameRequired]
+    return any(fileExistsList);
 
 
 
