@@ -5,13 +5,17 @@ import styles from './AudioListStyle.js'
 import SvgIconSearch from 'material-ui/svg-icons/action/search'
 
 class AudioList extends Component {
+
     constructor(props) {
+
         super(props);
         this.state = {
             progressbar: false,
             valid: '',
             inputValidation: true,
-            errorMessage: ''
+            errorMessage: '',
+            fCount: 10,
+            t: 10
         }
         this.searchFiles = this.searchFiles.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,8 +26,8 @@ class AudioList extends Component {
         if (this.refs && this.refs.search && this.refs.search.getValue()) {
             var host = window.location.hostname
             var port = window.location.port
-            port = port ? ":"+port : port
-            var url = "http://"+host+port+"/downloadFile?filename=" + this.refs.search.getValue();
+            port = port ? ":" + port : port
+            var url = "http://" + host + port + "/downloadFile?filename=" + this.refs.search.getValue();
             window.location.href = url;
             this.setState({
                 errorMessage: ''
@@ -58,10 +62,47 @@ class AudioList extends Component {
             valid: event.target.value
         })
         setTimeout(() => {
-            if (that.state.valid.length == 10) {
+            // console.log(that.state.valid.length);
+            if (that.state.valid.charAt(that.state.t) == ',' ) {
+                console.log("comma found");
+                this.setState({
+                    t: that.state.t + 11
+                })
+            }
+            else{
+                console.log("comma not founbd")
+            }
+            // if (that.state.valid.length == 10) {
+            //     console.log("hello");
+            // }
+            // else if (that.state.valid.length > 11 && (that.state.valid.length - (that.state.valid.match(/,/g) || []).length) % 10 == 0) {
+            //     console.log("hello world");
+            // } 
+            // console.log("length", that.state.valid.length);
+            if (that.state.valid.length == 10 || (that.state.valid.length == that.state.fCount + 11)) {
+                // Inverse Condtion
+                // if ( that.state.valid.charAt(that.state.fCount) == ",") {
+                //     that.setState({
+                //         fCount: that.state.fCount + 11
+                //     }) 
+                // Inverse Condtion
+                if (that.state.valid.length == 10) {
+
+                }
+                else {
+                    that.setState({
+                        fCount: that.state.fCount + 11
+                    })
+                }
+
+
+                // that.f = that.f + 10;
+                // if(  (t + that.state.valid.indexOf(',') || that.state.valid.indexOf(','))  == (10 || 10 + i) && that.state.valid.length == (11 || 11 + j)){
+                console.log(this.state.valid.length);
+                // if (that.state.valid.length == 10 || "," && that.state.valid.length == 21 || "," && that.state.valid.length == 32  ) {
                 that.setState({
                     inputValidation: false,
-                     errorMessage: ''
+                    errorMessage: ''
 
                 })
             } else {
@@ -82,7 +123,7 @@ class AudioList extends Component {
             var innerData = JSON.parse(fileName);
             allFiles = [];
             innerData.forEach((data, index) => {
-                allFiles.push(data.slice(data.lastIndexOf('/') + 1))
+                allFiles.push(data.slice(data.lastIndexOf('\\') + 1))
             });
 
         }
@@ -107,7 +148,7 @@ class AudioList extends Component {
                     </MUI.AppBar>
                     <br />
                     <div style={styles.buttonConainer}>
-                        <MUI.RaisedButton label="Download" primary={true}   onTouchTap={this.downloadFiles.bind(this)} />
+                        <MUI.RaisedButton label="Download" primary={true} onTouchTap={this.downloadFiles.bind(this)} />
                     </div>
 
 
@@ -117,12 +158,12 @@ class AudioList extends Component {
                         <h4 style={styles.heading}> Enter number in search bar to view list  </h4>
 
                         <h4 style={styles.error}> {this.state.errorMessage} </h4>
-                      
+
                         {allFiles && allFiles.length ? allFiles.map((data, index) => {
                             return (<MUI.Chip
                                 key={index}
                                 style={styles.chip}
-                                onchange={this.state.progressbar == false}
+
 
                                 >
                                 {data}

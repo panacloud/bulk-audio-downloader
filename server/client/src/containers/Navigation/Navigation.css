@@ -1,5 +1,7 @@
 .navigation-container {
       margin: auto;
+      height: 65px;
+    
 }
 
 .navigation-logo {
@@ -14,7 +16,7 @@
 .navigation-avatar-div {
         padding: 15px 0 20px 15px;
         background-image:  url('../../images/menu-bg.png');
-        height: 60px;
+       
       }
 .navigation-icon {
         float: left;
@@ -28,9 +30,22 @@
         color: white;
         font-weight: 300px;
         text-shadow: 1px 1px #444;
+        
       }
 
 .navigation-menuItem {
       color: white;
-      font-size: 14px
+      font-size: 14px;
+    
 }
+.image {
+      height:65px;
+      margin-top: -10px;
+      margin-left: 70px;
+}
+.appbar {
+      height: 65px;
+      margin-right: 8px;
+      margin-left: -16px;
+}
+      
