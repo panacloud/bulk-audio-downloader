@@ -12,7 +12,7 @@ class AudioList extends Component {
         this.state = {
             progressbar: false,
             valid: '',
-            inputValidation: true,
+            // inputValidation: true,
             errorMessage: '',
             fCount: 10,
             t: 10
@@ -49,10 +49,19 @@ class AudioList extends Component {
 
 
     searchFiles(e) {
-        if (this.refs && this.refs.search && this.refs.search.getValue()) {
-            this.props.fetchAudioData(this.refs.search.getValue());
+        var val = this.refs.search.getValue();
+        console.log("val", val);
+        var newVal = val.split(",")
+        if(newVal[newVal.length-1]=="")
+        newVal.splice(-1);
+        console.log("valid", newVal);
+        let mergeArrayAgain = newVal.join(",");
+        if (mergeArrayAgain) {
+            this.props.fetchAudioData(mergeArrayAgain);
             console.log("data");
+
             //this.setState({ progressbar: true })
+
         }
 
     }
@@ -63,51 +72,38 @@ class AudioList extends Component {
         })
         setTimeout(() => {
             // console.log(that.state.valid.length);
-            if (that.state.valid.charAt(that.state.t) == ',' ) {
-                console.log("comma found");
-                this.setState({
-                    t: that.state.t + 11
-                })
-            }
-            else{
-                console.log("comma not founbd")
-            }
-            // if (that.state.valid.length == 10) {
-            //     console.log("hello");
+            // if (that.state.valid.charAt(that.state.t) == ',' ) {
+            //     console.log("comma found");
+            //     this.setState({
+            //         t: that.state.t + 11
+            //     })
             // }
-            // else if (that.state.valid.length > 11 && (that.state.valid.length - (that.state.valid.match(/,/g) || []).length) % 10 == 0) {
-            //     console.log("hello world");
-            // } 
-            // console.log("length", that.state.valid.length);
-            if (that.state.valid.length == 10 || (that.state.valid.length == that.state.fCount + 11)) {
-                // Inverse Condtion
-                // if ( that.state.valid.charAt(that.state.fCount) == ",") {
-                //     that.setState({
-                //         fCount: that.state.fCount + 11
-                //     }) 
-                // Inverse Condtion
-                if (that.state.valid.length == 10) {
+            // else{
+            //     console.log("comma not founbd")
+            // }
 
-                }
-                else {
-                    that.setState({
-                        fCount: that.state.fCount + 11
-                    })
-                }
+            // if (that.state.valid.length == 10 || (that.state.valid.length == that.state.fCount + 11)) {
+            //     if (that.state.valid.length == 10) {
+
+            //     }
+            //     else {
+            //         that.setState({
+            //             fCount: that.state.fCount + 11
+            //         })
+            //     }
 
 
-                // that.f = that.f + 10;
-                // if(  (t + that.state.valid.indexOf(',') || that.state.valid.indexOf(','))  == (10 || 10 + i) && that.state.valid.length == (11 || 11 + j)){
-                console.log(this.state.valid.length);
-                // if (that.state.valid.length == 10 || "," && that.state.valid.length == 21 || "," && that.state.valid.length == 32  ) {
+
+            //  console.log(this.state.valid);
+            if (that.state.valid.length == 10) {
                 that.setState({
-                    inputValidation: false,
+                    // inputValidation: false,
                     errorMessage: ''
 
                 })
             } else {
                 that.setState({
-                    inputValidation: true,
+                    // inputValidation: true,
                     errorMessage: ''
                 })
             }
