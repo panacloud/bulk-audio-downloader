@@ -66,7 +66,7 @@ class Navigation extends Component {
   render() {
     return (
       <div className="navigation-container">
-        <MUI.AppBar style={this.props.styles}  title="Bulk Audio Downloader"   iconElementLeft={<img src={image} className="image" />}
+        <MUI.AppBar style={this.props.styles}  titleStyle={{color:'black'}} title="Bulk Audio Downloader"   iconElementLeft={<img src={image} className="image" />}
           onLeftIconButtonTouchTap={this.props.drawerToggle}
           />
         <MUI.Drawer open={this.props.drawerOpen} docked={false}
