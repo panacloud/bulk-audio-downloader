@@ -119,7 +119,7 @@ class AudioList extends Component {
             var innerData = JSON.parse(fileName);
             allFiles = [];
             innerData.forEach((data, index) => {
-                allFiles.push(data.slice(data.lastIndexOf('\\') + 1))
+                allFiles.push(data.slice(data.lastIndexOf('/') + 1))
             });
 
         }
