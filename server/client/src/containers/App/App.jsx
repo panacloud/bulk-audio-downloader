@@ -28,6 +28,8 @@ class App extends Component {
       header: {
         // User for resizing center view and header
         //paddingLeft: drawerOpen ? paddingLeftDrawerOpen : 20
+        backgroundColor: '#eeeeee'
+        
       },
       container: {
         // User for resizing center view and header

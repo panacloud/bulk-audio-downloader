@@ -15,8 +15,7 @@
     }
 .navigation-avatar-div {
         padding: 15px 0 20px 15px;
-        background-image:  url('../../images/menu-bg.png');
-       
+        
       }
 .navigation-icon {
         float: left;
@@ -43,9 +42,3 @@
       margin-top: -10px;
       margin-left: 70px;
 }
-.appbar {
-      height: 65px;
-      margin-right: 8px;
-      margin-left: -16px;
-}
-      

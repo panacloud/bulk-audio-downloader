@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Avatar from 'material-ui/Avatar';
 import AudioActions from '../../store/actions/audioActions.js'
 import AudioList from '../../components/AudioList/AudioList'
-import image from '../../components/logo.png.png'
+import image from '../../images/nielsen_logo.png'
 
 function mapStateToProps(state) {
   console.log("state", state);
@@ -66,7 +66,7 @@ class Navigation extends Component {
   render() {
     return (
       <div className="navigation-container">
-        <MUI.AppBar style={this.props.styles} className="appbar" title="Bulk Audio Downloader"   iconElementLeft={<img src={image} className="image" />}
+        <MUI.AppBar style={this.props.styles}  title="Bulk Audio Downloader"   iconElementLeft={<img src={image} className="image" />}
           onLeftIconButtonTouchTap={this.props.drawerToggle}
           />
         <MUI.Drawer open={this.props.drawerOpen} docked={false}
